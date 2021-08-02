@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IndianStateCensusAnalyser
 {
     //class census data to get all posiible data
-    class CensusData
+  public  class CensusData
     {
         public string SrNo;
         public string State;

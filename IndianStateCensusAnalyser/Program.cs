@@ -12,7 +12,8 @@ namespace IndianStateCensusAnalyser
         {
             Console.WriteLine("Implementaion of Indian states census analyser");
         }
-       
+      
     }
-    Console.Readline();
+   
 }
+

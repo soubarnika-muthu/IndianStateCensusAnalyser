@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace IndianStateCensusAnalyser
 {
@@ -18,7 +19,7 @@ namespace IndianStateCensusAnalyser
             {
                 if (!data.Contains(","))
                     throw new CensusAnalyserException("File contains invalid Delimiter", CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER);
-                string[] column = data.Split(",");
+                string[] column = data.Split(',');
                 if (csvFilePath.Contains("IndianStateCensusData.csv"))
                     dataMap.Add(column[0], new CensusData(new CensusDataDAO(column[0], column[1], column[2], column[3])));
                 if (csvFilePath.Contains("IndianStateCode.csv"))
