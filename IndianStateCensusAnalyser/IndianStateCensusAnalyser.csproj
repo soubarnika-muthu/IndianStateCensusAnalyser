@@ -58,6 +58,7 @@
     <None Include="App.config" />
     <None Include="IndianStateCensusData.csv" />
     <None Include="IndianStateCode.csv" />
+    <None Include="StateCodeWrongDelimeter.csv" />
     <None Include="WrongDelimeter.csv" />
   </ItemGroup>
   <ItemGroup>

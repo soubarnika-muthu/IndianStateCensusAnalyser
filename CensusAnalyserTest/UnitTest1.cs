@@ -147,5 +147,21 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("Invalid File Type", ce.Message);
             }
         }
+        //TC 2.4
+        //Given the file with in valid delimeter
+        [TestCategory("StateCode")]
+        [TestMethod]
+        public void GivenInvalidDelimeterforStateCode()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(stateCodeInvalidDelimeter, "SrNo,State,TIN,StateCode");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("File contains invalid Delimiter", ce.Message);
+            }
+        }
     }
 }
