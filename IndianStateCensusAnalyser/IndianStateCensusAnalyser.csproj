@@ -58,6 +58,10 @@
     <None Include="App.config" />
     <None Include="IndianStateCensusData.csv" />
     <None Include="IndianStateCode.csv" />
+    <None Include="WrongDelimeter.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

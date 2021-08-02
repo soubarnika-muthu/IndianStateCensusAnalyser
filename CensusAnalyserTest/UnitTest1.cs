@@ -10,10 +10,10 @@ namespace CensusAnalyserTest
     {
         string stateCensusPath = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\IndianStateCensusData.csv";
         string wrongPath = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\IndianStateCensus.csv";
-        string wrongFileType = @"C:\Users\HP1\source\repos\Lambda\CensusAnalyser\IndianStateCensusAnalyser\TextFile1.txt";
-        string invalidDelimeter = @"C:\Users\HP1\source\repos\Lambda\CensusAnalyser\IndianStateCensusAnalyser\WorngDelimeter.csv";
+        string wrongFileType = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\TextFile1.txt";
+        string invalidDelimeter = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\WrongDelimeter.csv";
         string stateCodePath = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\IndianStateCode.csv";
-        string stateCodeInvalidDelimeter = @"C:\Users\HP1\source\repos\Lambda\CensusAnalyser\IndianStateCensusAnalyser\StateCodeWrongDelimeter.csv";
+        string stateCodeInvalidDelimeter = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\StateCodeWrongDelimeter.csv";
         IndianStateCensusAnalyser.CensusAdapterFactory csv = null;
         CensusAdapter adapter;
         Dictionary<string, CensusData> totalRecord;
@@ -53,6 +53,36 @@ namespace CensusAnalyserTest
             catch (CensusAnalyserException ce)
             {
                 Assert.AreEqual("File Not Found", ce.Message);
+            }
+        }
+        //TC 1.3
+        //Given the invalid file it returns invalid file type exception
+        [TestMethod]
+        public void GivenInvalidFile()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(wrongFileType, "State,Population,AreaInSqKm,DensityPerSqKm");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("Invalid File Type", ce.Message);
+            }
+        }
+        //TC 1.4
+        //Given the file with in valid delimeter
+        [TestMethod]
+        public void GivenInvalidDelimeter()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(invalidDelimeter, "State,Population,AreaInSqKm,DensityPerSqKm");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("File contains invalid Delimiter", ce.Message);
             }
         }
     }
