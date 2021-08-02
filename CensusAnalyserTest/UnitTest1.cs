@@ -40,5 +40,20 @@ namespace CensusAnalyserTest
             //assertion
             Assert.AreEqual(actual, expected);
         }
+        //TC 1.2
+        //Given the incorrect path return file not exist
+        [TestMethod]
+        public void GivenIncorrectPath()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(wrongPath, "State,Population,AreaInSqKm,DensityPerSqKm");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("File Not Found", ce.Message);
+            }
+        }
     }
 }
