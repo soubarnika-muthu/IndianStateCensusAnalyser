@@ -131,5 +131,21 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("File Not Found", ce.Message);
             }
         }
+        //TC 2.3
+        //Given the invalid file it returns invalid file type exception
+        [TestCategory("StateCode")]
+        [TestMethod]
+        public void GivenInvalidFileForUC2()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(wrongFileType, "SrNo,State,TIN,StateCode");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("Invalid File Type", ce.Message);
+            }
+        }
     }
 }
