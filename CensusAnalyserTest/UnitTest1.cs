@@ -163,5 +163,21 @@ namespace CensusAnalyserTest
                 Assert.AreEqual("File contains invalid Delimiter", ce.Message);
             }
         }
+        //TC 2.5
+        //when passing the incorrect header
+        [TestCategory("StateCode")]
+        [TestMethod]
+        public void GivenIncorrectHeaderForStateCode()
+        {
+            try
+            {
+                var stateRecor = adapter.GetCensusData(stateCodePath, "State,Population,Area,DensityPerSqKm");
+
+            }
+            catch (CensusAnalyserException ce)
+            {
+                Assert.AreEqual("Data header in not matched", ce.Message);
+            }
+        }
     }
 }
