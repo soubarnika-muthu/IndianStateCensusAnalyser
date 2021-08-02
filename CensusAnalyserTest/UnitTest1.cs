@@ -16,16 +16,15 @@ namespace CensusAnalyserTest
         string stateCodeInvalidDelimeter = @"C:\Users\hp\source\repos\IndianStateCensusAnalyser\IndianStateCensusAnalyser\StateCodeWrongDelimeter.csv";
         IndianStateCensusAnalyser.CensusAdapterFactory csv = null;
         CensusAdapter adapter;
-        Dictionary<string, CensusData> totalRecord;
-        Dictionary<string, CensusData> stateRecord;
+        Dictionary<string, CensusDataDAO> totalRecord;
+        string[] stateRecord;
 
         [TestInitialize]
         public void testSetup()
         {
             csv = new CensusAdapterFactory();
             adapter = new CensusAdapter();
-            totalRecord = new Dictionary<string, CensusData>();
-            stateRecord = new Dictionary<string, CensusData>();
+            totalRecord = new Dictionary<string, CensusDataDAO>();
         }
 
         //TC.1
@@ -34,14 +33,15 @@ namespace CensusAnalyserTest
         [TestMethod]
         public void GivenStateCensusReturnTotalRecord()
         {
-            stateRecord = csv.LoadCsvData(CensusAnalyser.Country.INDIA, stateCensusPath, "State,Population,AreaInSqKm,DensityPerSqKm");
-            int actual = stateRecord.Count;
+            stateRecord = adapter.GetCensusData(stateCensusPath, "State,Population,AreaInSqKm,DensityPerSqKm");
+            int actual = stateRecord.Length - 1;
             int expected = 36;
             //assertion
             Assert.AreEqual(actual, expected);
         }
         //TC 1.2
         //Given the incorrect path return file not exist
+        [TestCategory("StateCensusAnalyser")]
         [TestMethod]
         public void GivenIncorrectPath()
         {
@@ -57,6 +57,7 @@ namespace CensusAnalyserTest
         }
         //TC 1.3
         //Given the invalid file it returns invalid file type exception
+        [TestCategory("StateCensusAnalyser")]
         [TestMethod]
         public void GivenInvalidFile()
         {
@@ -72,6 +73,7 @@ namespace CensusAnalyserTest
         }
         //TC 1.4
         //Given the file with in valid delimeter
+        [TestCategory("StateCensusAnalyser")]
         [TestMethod]
         public void GivenInvalidDelimeter()
         {
@@ -87,6 +89,7 @@ namespace CensusAnalyserTest
         }
         //TC 1.5
         //when passing the incorrect header
+        [TestCategory("StateCensusAnalyser")]
         [TestMethod]
         public void GivenIncorrectHeader()
         {
@@ -99,6 +102,18 @@ namespace CensusAnalyserTest
             {
                 Assert.AreEqual("Data header in not matched", ce.Message);
             }
+        }
+        //TC2.1
+        //Giving correct path it should return total count of the census list
+        [TestCategory("StateCodeAnalser")]
+        [TestMethod]
+        public void GivenStateCensusReturnTotalRecordForStateCode()
+        {
+            stateRecord = adapter.GetCensusData(stateCodePath, "SrNo,State,TIN,StateCode");
+            int actual = stateRecord.Length - 1;
+            int expected = 36;
+            //assertion
+            Assert.AreEqual(actual, expected);
         }
     }
 }
