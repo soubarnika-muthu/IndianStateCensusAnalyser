@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IndianStateCensusAnalyser
 {
-    class StateCodeDataDAO
+   public  class StateCodeDataDAO
     {
         //class takes the object for the  State Code census data
         public string SrNo;

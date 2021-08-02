@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace IndianStateCensusAnalyser
 {
-    class CensusAnalyser
+    public class CensusAnalyser
     {
+        public enum Country
+        {
+            INDIA
+        }
     }
 }
